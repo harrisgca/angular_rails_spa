@@ -6,6 +6,7 @@ angular.module('dogApp')
   function DogsController($http, $routeParams, $window){
 
     var self = this;
+    var accessToken = window.sessionStorage.access_token;
     self.params = $routeParams;
     // self.dogs = "It's working!!!";
 
