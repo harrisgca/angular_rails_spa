@@ -1,0 +1,18 @@
+<div class="jumbotron" ng-init="dogsCtrl.getDogIndex()">
+  <h1 class="text-center">A Dog App</h1>
+</div>
+
+<a href="#/new"><button class="btn">New Dog</button></a>
+
+<section>
+  <ul>
+    <li ng-repeat="dog in dogsCtrl.jsonDogs">{{dog.name}} - {{dog.age}}
+    <div>
+      <button class="btn"><a href="#/dogs/{{dog.id}}">Show</a></button>
+      
+      <button class="btn">Edit</button>
+      <button class="btn">Delete</button>
+    </div>
+    </li>
+  </ul>
+</section>
