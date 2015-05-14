@@ -3,7 +3,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :dogs, only:[:index,:show,:update,:create, :destroy]
+    post '/authenticate' => 'authentication#sign_in'
   end
+
+  
 
   get '*path' => 'home#index'
 

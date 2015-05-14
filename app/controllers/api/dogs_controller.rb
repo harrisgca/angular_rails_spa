@@ -1,5 +1,6 @@
 module API
   class DogsController < ApplicationController
+    before_action :restrict_access, only:[:update,:create,:destroy]
 
     def index
       render json: Dog.all
@@ -37,7 +38,12 @@ module API
 
     private
       def dog_params
-        params.require(:dog).permit(:name,:breed,:age)
+        params.require(:dog).permit(:name,:breed,:age,:token)
+      end
+
+      def restrict_access
+        token = User.find_by(token: params[:token])
+        render json: {error:"You need to be logged in to access this"}, status: 401 unless token
       end
   end
 end

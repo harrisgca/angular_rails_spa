@@ -6,11 +6,12 @@ angular.module('dogApp')
   function DogsController($http, $routeParams, $window){
 
     var self = this;
+    var accessToken = window.sessionStorage.access_token;
     self.params = $routeParams;
-
     //assigned inside showDog function
     self.currentDog;
-
+    //get error response from server
+    self.error;
     // self.dogs = "It's working!!!";
 
     self.getDogIndex = function(){
@@ -35,7 +36,8 @@ angular.module('dogApp')
       var newDog = {
         name: self.name,
         breed: self.breed,
-        age: self.age
+        age: self.age,
+        token: accessToken
       };
       console.log(newDog);
       $http.post("/api/dogs", newDog)
@@ -45,7 +47,9 @@ angular.module('dogApp')
           $window.location.href = ('#/dogs/' + data.id);
         })
         .error(function(data){
+          console.log(data);
           console.log('something went wrong!');
+          self.error = data.error;
         });
     };
   ///////////////
