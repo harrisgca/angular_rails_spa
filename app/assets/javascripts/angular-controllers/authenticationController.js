@@ -10,6 +10,7 @@ angular
         self.email; //bound to form in view
         self.password; //bound to form in view
         self.login = login;
+        self.logout = logout;
         self.isAuthenticated = isAuthenticated();
 
         function login(){
@@ -22,6 +23,7 @@ angular
             .success(function(data){
                 console.log(data);
                 setAccessToken(data.token);
+                self.isAuthenticated = isAuthenticated();
                 self.email = null;
                 self.password = null;
             })
@@ -29,6 +31,11 @@ angular
                 console.log(data);
             });
         }//end login function
+
+        function logout(){
+          window.sessionStorage.clear();
+          self.isAuthenticated = isAuthenticated();
+        }//end logout function
 
         function setAccessToken(token){
             window.sessionStorage.setItem("access_token", token);

@@ -43,7 +43,7 @@ module API
 
       def restrict_access
         token = User.find_by(token: params[:token])
-        render json: {error:"You need to be logged in to access this"}, status: 401 unless api_key
+        render json: {error:"You need to be logged in to access this"}, status: 401 unless token
       end
   end
 end
