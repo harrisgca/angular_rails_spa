@@ -7,6 +7,10 @@ angular.module('dogApp')
 
     var self = this;
     self.params = $routeParams;
+
+    //assigned inside showDog function
+    self.currentDog;
+
     // self.dogs = "It's working!!!";
 
     self.getDogIndex = function(){
@@ -59,8 +63,49 @@ angular.module('dogApp')
         .error(function(data){
           console.log('something went wrong!');
         });
-    }
-  }
+    }//end of showDog function
+
+//////////////////
+//////////////////
+//////////////////
+
+    self.editDog = function(){
+      var url = "/api/dogs/" + self.params.id;
+      var editedDog = {
+        name: self.currentDog.name,
+        breed: self.currentDog.breed,
+        age: self.currentDog.age
+      };
+
+      $http.patch(url, editedDog)
+        .success(function(data){
+          console.log(data);
+          console.log("successfully edited!");
+          $window.location.href = ('#/dogs/' + data.id);
+        })
+        .error(function(data){
+          console.log("something went wrong");
+        });
+    };
+    //////////////////////
+    //////////////////////
+    //////////////////////
+
+    self.deleteDog = function(id, index){
+      var confirmDelete = $window.confirm("Are you sure?");
+      if(confirmDelete){
+        var url = "/api/dogs/" + id;
+        $http.delete(url)
+          .success(function(){
+            console.log("successfully deleted");
+            self.jsonDogs.splice(index,1);
+          })
+          .error(function(){
+            console.log("something went wrong!");
+          });
+      }//end if(confirmDelete) statement
+    }//end deleteDog function
+  }//end of constructor function
 
 // {name:'Fido', breed:'poodle', age:9}
 

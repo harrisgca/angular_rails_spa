@@ -10,8 +10,10 @@
     <div>
       <button class="btn"><a href="#/dogs/{{dog.id}}">Show</a></button>
       
-      <button class="btn">Edit</button>
-      <button class="btn">Delete</button>
+      <button class="btn"><a href="#/dogs/{{dog.id}}/edit">Edit</a>
+      <!-- localhost:3000/#/dogs/1/edit -->
+      </button>
+      <button class="btn" ng-click="dogsCtrl.deleteDog(dog.id, $index)">Delete</button>
     </div>
     </li>
   </ul>

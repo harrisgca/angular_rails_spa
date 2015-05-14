@@ -18,6 +18,11 @@ angular.module('dogApp')
       controller: "DogsController",
       controllerAs: "dogsCtrl"
     })
+    .when('/dogs/:id/edit',{
+      templateUrl: "edit.html",
+      controller: "DogsController",
+      controllerAs: "dogsCtrl"
+    })
     .otherwise({
       redirectTo: '/'
     });
