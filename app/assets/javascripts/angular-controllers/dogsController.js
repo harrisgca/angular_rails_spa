@@ -26,6 +26,7 @@ angular.module('dogApp')
       .error(function(data){
         console.log('error!');
         console.log(data);
+        self.error = data.error;
       });
     };
 
@@ -78,7 +79,8 @@ angular.module('dogApp')
       var editedDog = {
         name: self.currentDog.name,
         breed: self.currentDog.breed,
-        age: self.currentDog.age
+        age: self.currentDog.age,
+        token: accessToken
       };
 
       $http.patch(url, editedDog)
@@ -89,6 +91,7 @@ angular.module('dogApp')
         })
         .error(function(data){
           console.log("something went wrong");
+          self.error = data.error;
         });
     };
     //////////////////////
@@ -96,19 +99,22 @@ angular.module('dogApp')
     //////////////////////
 
     self.deleteDog = function(id, index){
+      var authentication = {token: accessToken};
+
       var confirmDelete = $window.confirm("Are you sure?");
       if(confirmDelete){
         var url = "/api/dogs/" + id;
-        $http.delete(url)
+        $http.delete(url, {params:authentication})
           .success(function(){
             console.log("successfully deleted");
             self.jsonDogs.splice(index,1);
           })
-          .error(function(){
+          .error(function(data){
             console.log("something went wrong!");
+            self.error = data.error;
           });
       }//end if(confirmDelete) statement
-    }//end deleteDog function
+    };//end deleteDog function
   }//end of constructor function
 
 // {name:'Fido', breed:'poodle', age:9}

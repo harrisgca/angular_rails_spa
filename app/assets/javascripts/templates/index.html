@@ -7,9 +7,11 @@
       </form>
       <!-- end login form -->
 
+      <!-- begin logout button -->
       <div ng-if="auth.isAuthenticated">
         <button ng-click="auth.logout()">Logout</button>
       </div>
+      <!-- end logout button -->
       
   </div>
 
@@ -17,6 +19,13 @@
 <div class="jumbotron" ng-init="dogsCtrl.getDogIndex()">
   <h1 class="text-center">A Dog App</h1>
 </div>
+
+<!-- error section -->
+<div ng-if="dogsCtrl.error">
+  {{dogsCtrl.error}}
+</div>
+<!-- end error section -->
+
 
 <a href="#/new"><button class="btn">New Dog</button></a>
 

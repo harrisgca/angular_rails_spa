@@ -1,5 +1,11 @@
 <div ng-init="dogsCtrl.showDog()">
 
+  <!-- error section -->
+  <div ng-if="dogsCtrl.error">
+    {{dogsCtrl.error}}
+  </div>
+  <!-- end error section -->
+  
   <form>
     Name: <input type="text" ng-model="dogsCtrl.currentDog.name"><br>
     Breed: <input type="text" ng-model="dogsCtrl.currentDog.breed"><br>
