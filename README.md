@@ -98,6 +98,9 @@ angular.module('dogApp',['templates','ngRoute']);
 ***routing.js***
 
 ``` javascript
+angular.module('dogApp')
+  .config(['$routeProvider', config]);
+
 function config($routeProvider){
   $routeProvider
   .when('/',{
