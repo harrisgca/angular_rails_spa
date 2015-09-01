@@ -322,19 +322,24 @@ function DogsController($http, $routeParams, $window){
 ***dogsController.js***
 
 ``` javascript
-    self.deleteDog = function(id, index){
-      var deleteDog = $window.confirm('Are you sure you want to delete?');
-        if (deleteDog){
-          var url = "/api/dogs/" + id;
-          $http.delete(url)
-            .success(function(){
-              console.log('succesfully deleted');
-              self.jsonDogs.splice(index,1);
-            })
-            .error(function(data){
-              console.log("Something went wrong!");
-            });
-        }
+self.createDog = function(){
+      var newDog = {
+        name: self.name,
+        breed: self.breed,
+        age: self.age
+      };
+      console.log(newDog);
+      $http.post("/api/dogs", newDog)
+        .success(function(data){
+          console.log('successfuly created dog');
+          console.log(data);
+          $window.location.href = ('#/dogs/' + data.id);
+        })
+        .error(function(data){
+          console.log(data);
+          console.log('something went wrong!');
+          self.error = data.error;
+        });
     };
 ```
 
