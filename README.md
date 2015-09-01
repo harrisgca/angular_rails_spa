@@ -73,7 +73,7 @@ root 'home#index
 ***Update app/views/home/index.html.erb***
 
 ``` html
-<div ng-app="myApp">
+<div ng-app="dogApp">
   <div class="view-container">
     <div ng-view></div>
   </div>
