@@ -20,7 +20,7 @@
 
 ``` ruby
 gem 'angularjs-rails'
-gem 'angular-rails-templates'
+gem 'angular-rails-templates', '~> 0.2.0'
 gem 'bootstrap-sass', '~> 3.3.4'
 ```
 
