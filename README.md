@@ -356,16 +356,17 @@ self.createDog = function(){
 ***show.html***
 
 ``` html
+
 <div ng-init="dogsCtrl.showDog()">
 
-  <form>
-    Name: <input type="text" ng-model="dogsCtrl.currentDog.name"><br>
-    Breed: <input type="text" ng-model="dogsCtrl.currentDog.breed"><br>
-    Age: <input type="text" ng-model="dogsCtrl.currentDog.age"><br>
-    <button ng-click="dogsCtrl.editDog()">Edit Dog</button>
-  </form>
 
-<a href="#/">Home</a>
+  <section ng-init="dogsCtrl.showDog()">
+    Name: {{dogsCtrl.currentDog.name}}<br>
+    Breed: {{dogsCtrl.currentDog.breed}}<br>
+    Age: {{dogsCtrl.currentDog.age}}<br>
+  </section>
+
+  <a href="#/">Home</a>
 </div>
 ```
 
